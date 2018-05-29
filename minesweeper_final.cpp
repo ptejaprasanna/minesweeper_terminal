@@ -1,5 +1,4 @@
 
-// imports the libraries for the game 
 #include <iostream>
 #include <stdlib.h>
 #include <string>
@@ -7,10 +6,10 @@
 #include <time.h>
 
 
-// using namespace
+
 using namespace std;
 
-//All function's declarations 
+
 bool isValid(int r, int c, int height, int width);
 void printGridNow(int width,int height,char **boardValues);
 void buildGrid(int width,int height,char **boardValues);
@@ -18,27 +17,16 @@ void play(int width, int height, char **boardValues,char **tempValues, char **te
 void first_choice(int width,int height,char **boardValues,char **tempValues, char **tempValues1,int numberMines);
 void initialization();
  
-/**
- * function to check the index that user entered for a cell. 
- * Comparing it with the width and height of the game's grid.
- * 
- * @ int r ,int c , int height , int width
- **/
+
 bool isValid(int r, int c, int height, int width){
     return ((r>=0)&&(r<height)&&(c>=0)&&(c<width));
     
 }
 
 
-/**
- * function to print the Grid after each step of the game.
- * Beginning of the game all the cells are going to be empty '-'. 
- * 
- * @ int height , int width, boardValues
- **/
+
 void printGridNow(int width,int height,char **boardValues){
     
-    // Saleh: I'm working on fixing the style here
     
     if(width==10){
         
@@ -82,7 +70,7 @@ void printGridNow(int width,int height,char **boardValues){
     }
     else {
         cout<< "\n"<<"==========================================="<<endl;
-        cout<<       "* Advance Level Mineswepeer.              *"<<endl;
+        cout<<       "* Advanced Level Mineswepeer.              *"<<endl;
         cout<<       "==========================================="<<"\n"<<endl;
         cout<<"+ - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - +";
         cout<<" - + - + - + - + - + - + - + - + - + - +"<<endl;
@@ -107,11 +95,7 @@ void printGridNow(int width,int height,char **boardValues){
     }
 }
 
-/**
- * function to set the grid of the game for the first time all to empty '-'.
- * 
- * @ int width, int height  , char boardValues
- **/
+
 void buildGrid(int width,int height,char **boardValues){
     // Saleh: I'm working on fixing the style here
     for (int row=0; row < height ; row++){
@@ -121,11 +105,7 @@ void buildGrid(int width,int height,char **boardValues){
     }
 }
 
-/*
- * function to generate the mines in the game's grid.
- * 
- * @ int width, int height  , char boardValues, int numberMines, int playerHeight, int playerWidth
- **/
+
 void neighbor(char **tempValues, char **tempValues1, int playerHeight, int playerWidth, int height, int width){
      if(!(tempValues1[playerHeight][playerWidth]!='0')){
                 if(isValid(playerHeight+1,playerWidth-1,height,width)){tempValues1[playerHeight+1][playerWidth-1]=tempValues[playerHeight+1][playerWidth-1];}
@@ -236,11 +216,6 @@ void buildMines(int width,int height, char **boardValues, int numberMines, int p
     
 }
 
-/**
- * function to count the number of mines adjacent to a cell. This function will loop through all cells.
- * 
- * @ int width, int height  , char boardValues, int numberMines, int playerHeight, int playerWidth
- **/
 void buildValues(int width, int height, char **boardValues, int numberMines, char **tempValues){
     int count=0;
     
@@ -280,12 +255,7 @@ void buildValues(int width, int height, char **boardValues, int numberMines, cha
         }
     }
 }
-/**
- * function to read freom the user the index of the cell he wants to reach. It will do that by 
- * reading the height follow by the width. Also it reads if the player wants to add a flag.
- * 
- * @ int width, int height  , char boardValues, int numberMines, int playerHeight, int playerWidth
- **/
+
 void first_choice(int width,int height,char **boardValues,char **tempValues, char **tempValues1,int numberMines){
     int playerHeight;
     int playerWidth;
@@ -356,11 +326,7 @@ void first_choice(int width,int height,char **boardValues,char **tempValues, cha
     play(width,height,boardValues,tempValues,tempValues1,flag_count,numberMines);
 }
 
-/**
- * The start function of the game. All the initlization of the game are found here.
- * 
- * @ int width, int height  , char boardValues
- **/
+
 void initialization(){
     int ucerChoose=1;// default
     int width;
@@ -368,21 +334,21 @@ void initialization(){
     int numberMines;
     
     cout<< "==========================================="<<endl;
-    cout<< "* Please select the level of the game:    *"<<endl;
+    cout<< "* Difficulty level:    *"<<endl;
     cout<< "*-----------------------------------------*"<<endl;
-    cout<< "* 1- For beginner (10 x 10).              *"<<endl;
-    cout<< "* 2- For intermediate (20 x 20).          *"<<endl;
-    cout<< "* 3- For advanced (30 x 30).              *"<<endl;
+    cout<< "* 1- Beginner (10 x 10).              *"<<endl;
+    cout<< "* 2- Intermediate (20 x 20).          *"<<endl;
+    cout<< "* 3- Advanced (30 x 30).              *"<<endl;
     cout<< "==========================================="<<endl;
     
     
     cin>> ucerChoose;
     if (ucerChoose < 1 || ucerChoose>3){
-        cout<< "Error 1: You should type the number that correspond to the level."<<endl;
+        cout<< "Error 1: You should type the number that corresponds to the level."<<endl;
     }
     else {
         if(ucerChoose==1){
-            cout<<"choose the number of mines(20 to 98): ";
+            cout<<"Choose the number of mines(20 to 98): ";
             cin>>numberMines;
             while((numberMines>98) ||(numberMines<20)){
                 cout<<"Error :The number of mines, should be a number between (20 to 98): ";
@@ -392,7 +358,7 @@ void initialization(){
             }
             width=10;
             height =10; // defualt
-            //numberMines =20; //defualt max =100
+            
             char** boardValues = new char*[height];
             
             for(int i = 0; i < height; i++){
@@ -413,10 +379,10 @@ void initialization(){
             first_choice(width,height,boardValues,tempValues,tempValues1,numberMines);
         }
         else if(ucerChoose==2){
-            cout<<"choose the number of mines(80 to 300): ";
+            cout<<"Choose the number of mines(80 to 300): ";
             cin>>numberMines;
             while((numberMines>300) || (numberMines<80)){
-                cout<<"Error :Choose the number of mines , should be between (80 to 300): ";
+                cout<<"Error :Choose the number of mines , should be between 80 to 300: ";
                 cin.clear();
                 cin.ignore(256,'\n');
                 cin>>numberMines;
@@ -478,7 +444,7 @@ void initialization(){
         
     }
     
-    //cout<< "the number user pick is "<< ucerChoose;
+
     
 }
 
